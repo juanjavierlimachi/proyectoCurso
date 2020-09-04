@@ -1,0 +1,36 @@
+{% load bootstrap4 %}
+ <script type="text/javascript">
+   $('#demo-form2').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:$(this).attr("action"),
+            data: $(this).serialize(),
+            success: function(resp){
+                if(resp == '200'){
+                    $(".toast .alert-success").html("Los datos se registraron correctamente...!");
+                    $('.toast').toast({delay: 3000});
+                    $('.toast').toast('show');
+                    callData('/getUsers');
+                    $(".modal .close").click();
+                }
+                else{
+                    $(".modal-body").html(resp);
+                }
+                
+            }
+        });
+    });
+ </script>   
+ <form method="POST" action="{% url 'register' %}" role="form" class="form-horizontal" id="demo-form2" data-parsley-validate >
+     {% csrf_token %}
+     {% bootstrap_form form %}
+     {% buttons %}
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="button" class="btn btn-secondary btn-ms" data-dismiss="modal">Cancelar</button>
+            <button type="reset" class="btn btn-warning btn-ms">Borrar</button>
+        </div>
+    {% endbuttons %}
+  </form>
+  
