@@ -16,8 +16,10 @@
                 }
                 else{
                     $(".modal-body").html(resp);
-                }
-                
+                }  
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+              alert("Error al enviar intente nuevamente gracias");
             }
         });
     });

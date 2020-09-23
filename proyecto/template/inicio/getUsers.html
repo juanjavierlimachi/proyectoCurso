@@ -30,14 +30,14 @@
                 {% if user.is_superuser %}
                     {% if i.is_superuser %}
                     <td>
-                        <button href="#" class="btn btn-primary btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Dar de Baja" data-toggle="modal" data-target="#exampleModal">Estado</button>
+                        <button href="#" class="btn btn-success btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Opciones" data-toggle="modal" data-target="#staticBackdrop">Estado</button>
                     </td>
                     {% else %}
                     {% if i.is_staff %}
-                        <td><button href="#" class="btn btn-primary btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Dar de Baja" data-toggle="modal" data-target="#exampleModal">Estado</button></td>
+                        <td><button href="#" class="btn btn-success btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Opciones" data-toggle="modal" data-target="#staticBackdrop">Estado</button></td>
                     {% else %}
                         {% if i.is_active %}
-                            <td><button href="#" class="btn btn-primary btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Dar de Baja" data-toggle="modal" data-target="#exampleModal">Estado</button></td>
+                            <td><button href="#" class="btn btn-success btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Opciones" data-toggle="modal" data-target="#staticBackdrop">Estado</button></td>
                         {% endif %}
                         {% endif %}
                     {% endif %}
@@ -50,12 +50,12 @@
 </div>
 <script type="text/javascript">
 	function gestiosUsuarios(route,title){
-		//$("#exampleModal .modal-title").text(title);
+		$(".modal .modal-title").text(title);
         $.ajax({
           type:'GET',
           url:route,
           success:function(resp){
-            $(".modal-body").html(resp);
+            $(".modal .modal-body").html(resp);
           }
         });
       }
