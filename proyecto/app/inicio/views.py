@@ -4,6 +4,7 @@ from django.contrib.auth import login as do_login
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import View
 from django.contrib.auth.forms import User
 from proyecto.app.inicio.forms import *
 from django.contrib.auth.decorators import login_required
@@ -37,9 +38,27 @@ def cerrarSesion(request):
     do_logout(request)
     return redirect("/")
 
-def getUsers(request):
+""" def getUsers(request):
     users = User.objects.all().order_by('-id')
-    return render(request,'inicio/getUsers.html' , {'users':users})
+    return render(request,'inicio/getUsers.html' , {'users':users}) """
+
+class AllGetUsers(View):
+    model = User
+    template_name = 'inicio/getUsers.html'
+    
+    def get_queryset(self):
+        #si quiero enviar otra consulta
+        return self.model.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = {}
+        context['users'] = self.get_queryset()
+        #PUEDO AGREGAR MAS DATOS EL CONTEXTO contexto['otros']
+        return context
+    
+    def get(self, request, *args, **kwargs):
+        return render(request,self.template_name, self.get_context_data())
+    
 
 
 from django.http import JsonResponse
