@@ -4,10 +4,11 @@ from django.contrib.auth import login as do_login
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import View
+from django.views.generic import View, DetailView
 from django.contrib.auth.forms import User
 from proyecto.app.inicio.forms import *
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.contrib import messages
 # Create your views here.
 def login(request):
@@ -48,11 +49,15 @@ class AllGetUsers(View):
     
     def get_queryset(self):
         #si quiero enviar otra consulta
-        return self.model.objects.all()
+        dic = {
+            'users':self.model.objects.all(),
+            'usuarios':self.model.objects.all().count()
+        }
+        return dic
     
     def get_context_data(self, **kwargs):
-        context = {}
-        context['users'] = self.get_queryset()
+        context = self.get_queryset()
+        #print(context)
         #PUEDO AGREGAR MAS DATOS EL CONTEXTO contexto['otros']
         return context
     
@@ -60,6 +65,17 @@ class AllGetUsers(View):
         return render(request,self.template_name, self.get_context_data())
     
 
+
+class UserDetailView(DetailView):
+    model = User
+    template_name = "inicio/user.html"
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        print(request.POST['checkbox'])#obtengo un dato de un input del formulario
+        print(kwargs['pk'])#diccionario de datos para obtener los datos del la url
+        print("************-------------------------------------")
+        print(type(args))#tupla de datos se encuentra vacio
+        return HttpResponse('usuario Inhabilitado')
 
 from django.http import JsonResponse
 def registerNewUser(request):

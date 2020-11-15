@@ -7,4 +7,5 @@ urlpatterns = [
     path('cerrar-sesion', views.cerrarSesion, name='close'),
     path('all-get-users', views.AllGetUsers.as_view(), name='users'),
     path('registerNewUser', views.registerNewUser, name='register'),
+    path('show-status-user/<int:pk>',views.UserDetailView.as_view(), name='user'),
 ]

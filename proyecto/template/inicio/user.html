@@ -1,0 +1,29 @@
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <tr><td>Nombre de Usuario: <strong>{{object.username}} {{object.id}}</strong></td></tr>
+        <tr><td>Nombre completo:<strong>{{object.get_full_name|upper}}</strong></td></tr>
+        <tr><td>Ultimaves que ingreso al sistema hace: <strong>{{object.last_login|timesince}}</strong></td></tr>
+        <tr><td>
+            {% if object.is_superuser %}
+                <form method="POST" action="show-status-user/{{object.id}}" role="form" class="form-horizontal" id="demo-form2" data-parsley-validate>{% csrf_token %}
+                    <input type='checkbox' value="0" name='checkbox' id='staff' required/>
+                    <button type="submit">Anular cuenta</button>
+                </form>
+            {% elif object.is_staff %}
+                <form method="POST" action="show-status-user/{{object.id}}" role="form" class="form-horizontal" id="demo-form2" data-parsley-validate>{% csrf_token %}
+                    <input type='checkbox' value="0" name='checkbox' id='staff' required/>
+                    <button type="submit">Anular cuenta</button>
+                </form>
+            {% else %}
+                <form method="POST" action="show-status-user/{{object.id}}" role="form" class="form-horizontal" id="rolUser_id" data-parsley-validate>{% csrf_token %}
+                    <select name="option" required>
+                        <option value=""> Eliga una opción</option>
+                        <option value="super">Habilitar como super usuario</option>
+                        <option value="user">Habilitar como usuario</option>
+                    </select>   
+                    <button type="submit" class="btn btn-default btn-xs">Habilitar cuenta</button>
+                </form>   
+            {% endif %}
+        </td></tr>
+    </table>
+</div>

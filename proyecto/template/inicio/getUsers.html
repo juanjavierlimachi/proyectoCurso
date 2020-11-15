@@ -44,8 +44,14 @@
                 {% endif %}
             </tr>
         {% empty %}
+
         <tr> <td colspan="6" align="center"><strong>No se encontró registros</strong></td> </tr>
     {% endfor %}
+    <tr>
+        <td>
+            Total usuarios: {{usuarios}}
+        </td>
+    </tr>
     </table>
 </div>
 <script type="text/javascript">
