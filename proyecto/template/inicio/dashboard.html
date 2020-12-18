@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>My Blog</title>
+    <title>Carrera de Agronomia</title>
 
     <!-- Bootstrap CSS CDN -->
     {% bootstrap_css %}
@@ -25,26 +25,16 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Logo</h3>
+                <p style="text-align: center; color: white;font-size: small;">U.A.T.F <br>Carrera de Agronomia</p>
             </div>
 
             <ul class="list-unstyled components">
-                {% verbatim %}
+                <!-- {% verbatim %}
                     <p>{{ cm.username }}</p>
-                {% endverbatim %}
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
+                {% endverbatim %} -->
+                <p>Usuario: {{request.user}}</p>
+                <li>
+                    <a href="/dashboard">Inicio</a>
                 </li>
                 <li>
                     <a href="" onclick="callData('{% url 'users' %}')">Usuarios</a>
@@ -83,24 +73,17 @@
                         <span ng-if="!cm.togleMenu">Ocultar Menú</span>
                         <span ng-if="cm.togleMenu">Mostar Menú</span>
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Información</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">{{request.user}}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'close' %}">Cerrar Sesión</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Mi Perfil
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item" type="button" href="#" onclick="callData('{% url 'myperfil' %}')">Mis datos</a>
+                          <a class="dropdown-item" type="button" href="#" onclick="callData('/change-password/{{request.user.id}}')">Cambiar contraseña</a>
+                          <a class="dropdown-item" type="button" href="{% url 'close' %}">Salir del sistema</a>
+                        </div>
+                      </div>
+                    
             </nav>
             {# contenido de la pagina #}
             <!--Messges de Toast-->

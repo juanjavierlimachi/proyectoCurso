@@ -4,18 +4,18 @@
   			Registrar Usuario
           </span>
     </button>
-	<h4 colspan="6" align="center"><strong>LISTA DE USUARIOS REGISTRADOS EN EL SISTEMA</strong></h4>
+	<h5 colspan="6" align="center"><strong>LISTA DE USUARIOS REGISTRADOS EN EL SISTEMA</strong></h5>
     <table class="table table-hover table-striped table-responsive datatable thead-light table-sm" id="table-ingresos">
     <thead  class="success">
-            <th style="width: 3%;">Nro</th>
-            
-            <th>USUARIO</th>
-            <th>NOMBRE COMPLETO</th>
-            <th>CORREO ELECTRONICO</th>
-            <th>FECHA DE REGISTRO</th>
-            {% if user.is_superuser %}
-                <th>ESTADO</th>
-            {% endif %}
+        <th style="width: 3%;">Nro</th>
+        
+        <th>USUARIO</th>
+        <th>NOMBRE COMPLETO</th>
+        <th>CORREO ELECTRONICO</th>
+        <th>FECHA DE REGISTRO</th>
+        {% if user.is_superuser %}
+            <th>ESTADO</th>
+        {% endif %}
     </thead>
 
     {% for i in users %}
@@ -33,12 +33,12 @@
                         <button href="#" class="btn btn-success btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Opciones" data-toggle="modal" data-target="#staticBackdrop">Estado</button>
                     </td>
                     {% else %}
-                    {% if i.is_staff %}
-                        <td><button href="#" class="btn btn-success btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Opciones" data-toggle="modal" data-target="#staticBackdrop">Estado</button></td>
-                    {% else %}
-                        {% if i.is_active %}
-                            <td><button href="#" class="btn btn-success btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Opciones" data-toggle="modal" data-target="#staticBackdrop">Estado</button></td>
-                        {% endif %}
+                        {% if i.is_staff %}
+                            <td><button href="#" class="btn btn-warning btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Opciones" data-toggle="modal" data-target="#staticBackdrop">Estado</button></td>
+                        {% else %}
+                            {% if i.is_active %}
+                                <td><button href="#" class="btn btn-danger btn-sm" onclick="gestiosUsuarios('show-status-user/{{i.id}}','PRIVILEGIOS DEL USUARIO');" title="Opciones" data-toggle="modal" data-target="#staticBackdrop">Estado</button></td>
+                            {% endif %}
                         {% endif %}
                     {% endif %}
                 {% endif %}
@@ -47,11 +47,6 @@
 
         <tr> <td colspan="6" align="center"><strong>No se encontró registros</strong></td> </tr>
     {% endfor %}
-    <tr>
-        <td>
-            Total usuarios: {{usuarios}}
-        </td>
-    </tr>
     </table>
 </div>
 <script type="text/javascript">

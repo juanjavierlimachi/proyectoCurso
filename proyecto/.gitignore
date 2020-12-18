@@ -1,0 +1,17 @@
+db.sqlite3
+__pycache__
+./proyecto/app/__pycache__
+./proyecto/app/inicio/__pycache__
+./proyecto/app/inicio/migrations/__pycache__
+.idea
+*.log
+
+*.pot
+
+*.pyc
+
+*/*/*/__pycache__/
+
+*/*/__pycache__/
+
+*/__pycache__/
