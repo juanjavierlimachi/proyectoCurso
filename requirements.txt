@@ -1,0 +1,16 @@
+dj-database-url==0.4.2
+django-bootstrap-form==3.4
+gunicorn==19.7.1
+html5lib==1.0.1
+mysqlclient==1.4.6
+Pillow==7.1.2
+psycopg2==2.7.5
+PyPDF2==1.26.0
+pytz==2019.3
+reportlab==3.4.0
+six==1.15.0
+isort==4.3.21
+webencodings==0.5.1
+whitenoise==5.1.0
+xhtml2pdf==0.2.4
+django-bootstrap4==2.2.0

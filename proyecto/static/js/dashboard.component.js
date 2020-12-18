@@ -6,7 +6,7 @@ angular.module('myApp',[]).config(function($httpProvider){
 .controller('controllerApp',['$http','$compile',
     function($http, $compile){
       var cm = this;
-      cm.username = "Javier Juan";
+      //cm.username = "Javier Juan";
       cm.togleMenu = false;
       cm.mesage = function(){
         
